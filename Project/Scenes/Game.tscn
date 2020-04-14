@@ -1,12 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/shotgun.obj" type="ArrayMesh" id=2]
-
-[sub_resource type="PlaneMesh" id=1]
-
-[sub_resource type="ConvexPolygonShape" id=2]
-points = PoolVector3Array( -1.00542, 0.00546448, -1.00546, -1.00542, 0.00546448, 1.00546, 1.00546, 0.00546448, -1.00546, 1.00546, 0.00546448, 1.00546 )
+[ext_resource path="res://Scenes/Ground.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=3]
 radius = 0.5
@@ -15,18 +11,6 @@ radius = 0.5
 extents = Vector3( 0.4, 0.1, 0.4 )
 
 [node name="Game" type="Spatial"]
-
-[node name="Ground" type="StaticBody" parent="."]
-editor/display_folded = true
-
-[node name="MeshInstance" type="MeshInstance" parent="Ground"]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground"]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
-shape = SubResource( 2 )
 
 [node name="Player" type="KinematicBody" parent="."]
 script = ExtResource( 1 )
@@ -81,3 +65,6 @@ material/29 = null
 material/30 = null
 material/31 = null
 material/32 = null
+
+[node name="Ground" parent="." instance=ExtResource( 3 )]
+input_capture_on_drag = true
